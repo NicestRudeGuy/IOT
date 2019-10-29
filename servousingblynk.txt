@@ -1,0 +1,25 @@
+
+
+#include <Servo.h>
+
+// You should get Auth Token in the Blynk App.
+// Go to the Project Settings (nut icon).
+char auth[] = "place your Blynk authorisation code here ";
+
+Servo servo;
+void setup()
+{
+Serial.begin(9600);
+Blynk.begin(auth, "WiFi Name", "Password"); // replace with your WiFi router details
+servo.attach(15);
+}
+BLYNK_WRITE(V15)
+{
+servo.writeMicroseconds(param.asInt());
+}
+
+void loop()
+
+{
+Blynk.run();
+}
